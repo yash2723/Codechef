@@ -19,13 +19,16 @@ using namespace std;
 
 void solve()
 {
-    ll x , y;
-    cin >> x >> y;
-    ll ans = abs(y);
-    if(x == 0)
-        ans += 2;
-    ans += abs(x);
-    answer(ans);
+    ll n;
+    cin >> n;
+    set<ll> a;
+    for(int i = 0 ; i < n ; i++)
+    {
+        int num;
+        cin >> num;
+        a.insert(num);
+    }
+    
 }
 
 
