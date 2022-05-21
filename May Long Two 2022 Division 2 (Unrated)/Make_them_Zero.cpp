@@ -16,6 +16,16 @@ using namespace std;
 #define ansno cout << "NO\n" 
 #define pii pair <int,int>
 
+bool isPW2(ll n)
+{
+    if(n == 0)
+        return false;
+    ll t = log2(n);
+    if(n == pow(2,t))
+        return true;
+    else
+        return false;
+}
 
 void solve()
 {
@@ -28,7 +38,40 @@ void solve()
         cin >> num;
         a.insert(num);
     }
-    
+    set<ll> hash;
+    vll v;
+    for(auto it : a)
+        v.pb(it);
+    for(int i = 0 ; i < v.size() ; i++)
+    {
+        if(isPW2(v[i]))
+        {
+            hash.insert(v[i]);
+            v[i] = 0;
+        }
+    }
+    // sort(v.begin() , v.end());
+    // while((v[0] != 0) && (v[v.size()-1] != 0))
+    // {
+        for(int i = 0 ; i < v.size() ; i++)
+        {
+            if(v[i] == 0)
+                continue;
+            else
+            {
+                while(v[i] != 0)
+                {
+                    ll sub = log2(v[i]);
+                    // cout << v[i] << " - " << pow(2,sub) << endl;
+                    hash.insert(pow(2,sub));
+                    v[i] = v[i] - pow(2,sub);
+                }
+            }
+        }
+    // }
+    // for(auto it : hash)
+    //     cout << it << " ";
+    answer(hash.size());
 }
 
 
