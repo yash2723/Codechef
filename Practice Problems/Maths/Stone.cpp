@@ -4,7 +4,7 @@ using namespace std;
 #define PI  3.141592653589793
 
 #define FAST ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
-#define ll long long
+#define ll long long int
 #define vi vector <int>
 #define vll vector < ll >
 #define pb push_back
@@ -19,21 +19,34 @@ using namespace std;
 
 void solve()
 {
-    ll n , k;
+    int n , k;
     cin >> n >> k;
-    vll v(n);
-    ll max = 0;
+    int arr[n] , arr1[n] , arr2[n];
     for(int i = 0 ; i < n ; i++)
+        cin >> arr[i];
+    int max1=*max_element(arr,arr+n);
+    if(k == 0)
     {
-        cin >> v[i];
-        if(max < v[i])
-            max = v[i];
+        for(int i = 0 ; i < n ; i++)
+            cout << arr[i] << " " ;   
     }
-    for(int i = 0 ; i < n ; i++)
-        v[i] = (k*max)-v[i];
-    for(auto it : v)
-        cout << it << " ";
-    cout << endl;
+    else
+    {
+        for(int i = 0 ; i < n ; i++)
+        {
+            arr1[i] = max1 - arr[i];
+            if(k&1) 
+                cout << arr1[i] << " ";
+        }
+        int max2 = *max_element(arr1,arr1+n);
+        for(int i = 0 ; i < n ; i++)
+        {
+            arr2[i] = max2 - arr1[i];
+            if(!(k&1))
+                cout << arr2[i] << " ";
+        }
+    }
+    cout<<endl;
 }
 
 

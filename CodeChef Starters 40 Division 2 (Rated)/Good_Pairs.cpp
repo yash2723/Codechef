@@ -27,14 +27,15 @@ void solve()
     for(int i = 0 ; i < n ; i++)
         cin >> b[i];
     map<ll , ll> hash;
+    ll cnt = 0;
     for(int i = 0 ; i < n ; i++)
     {
-        ll key = !(a[i] ^ b[i]);
+        ll key = (a[i] ^ b[i]);
+        cnt += hash[key];
         hash[key]++;
     }
-    ll cnt = 0;
-    for(auto it : hash)
-        cnt += (it.second-1);
+    // for(auto it : hash)
+    //     cout << it.first << " " << it.second << endl;
     answer(cnt);
 }
 
