@@ -4,7 +4,7 @@ using namespace std;
 #define PI  3.141592653589793
 
 #define FAST ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
-#define ll long long int
+#define ll long long
 #define vi vector <int>
 #define vll vector < ll >
 #define pb push_back
@@ -19,35 +19,24 @@ using namespace std;
 
 void solve()
 {
-    ll n , k;
-    cin >> n >> k;
-    ll arr[n] , arr1[n] , arr2[n];
-    for(int i = 0 ; i < n ; i++)
-        cin >> arr[i];
-    ll max1 = *max_element(arr,arr+n);
-    if(k == 0)
+    ll D , d , P , Q;
+    cin >> D >> d >> P >> Q;
+    ll cnt = 1 , ans = 0;
+    while(D)
     {
-        for(int i = 0 ; i < n ; i++)
-            cout << arr[i] << " " ;   
-    }
-    else
-    {
-        for(int i = 0 ; i < n ; i++)
+        if(D <= d)
         {
-            arr1[i] = max1 - arr[i];
-            if(k & 1) 
-                cout << arr1[i] << " ";
+            D = 0;
+            ans += (D * (P + (cnt * Q)));
         }
-        ll max2 = *max_element(arr1,arr1+n);
-        for(int i = 0 ; i < n ; i++)
+        else
         {
-            arr2[i] = max2 - arr1[i];
-            if(k & 1);
-            else
-                cout << arr2[i] << " ";
+            ans += (d * (P + (cnt * Q)));
+            D -= d;
+            cnt++;
         }
     }
-    cout << endl;
+    answer(ans);
 }
 
 
@@ -56,7 +45,7 @@ int main()
     FAST;
 
     ll t = 1;
-    // cin >> t;
+    cin >> t;
     while(t--)
     {
         solve();
