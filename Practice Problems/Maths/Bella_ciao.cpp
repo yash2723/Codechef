@@ -21,13 +21,13 @@ void solve()
 {
     ll D , d , P , Q;
     cin >> D >> d >> P >> Q;
-    ll cnt = 1 , ans = 0;
+    ll cnt = 0 , ans = 0;
     while(D)
     {
         if(D <= d)
         {
-            D = 0;
             ans += (D * (P + (cnt * Q)));
+            D = 0;
         }
         else
         {
