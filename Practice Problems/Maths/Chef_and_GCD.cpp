@@ -19,28 +19,29 @@ using namespace std;
 
 void solve()
 {
-    ll n , m;
-    cin >> n >> m;
-    ll total = n * m;
-    ll num = 0;
-    if(n & 1)
-    {
-        if(m & 1)
-            num = ((n+1)/2)*((m-1)/2) + ((m+1)/2)*((n-1)/2);
-        else
-            num = ((n+1)/2)*((m)/2) + ((m)/2)*((n-1)/2);
-    }
+    ll x , y;
+    cin >> x >> y;
+    ll cnt = 0;
+    if(__gcd(x , y) > 1)
+        answer(cnt);
     else
     {
-        if(m & 1)
-            num = ((n)/2)*((m-1)/2) + ((m+1)/2)*((n)/2);
-        else
-            num = ((n)/2)*((m)/2) + ((m)/2)*((n)/2);
+        int _min = min(x , y) , _max = max(x , y);
+        int ans1 = _max - _min , ans2;
+        for(int i = 2 ; i*i <= _max ; i++)
+        {
+            if(_max % i == 0)
+            {
+                if(_min < i)
+                {
+                    ans2 = i - _min;
+                    answer(min(ans1,ans2));
+                    return;
+                }
+            }
+        }
+        answer(ans1);
     }
-    ll gcd = __gcd(num , total);
-    num /= gcd;
-    total /= gcd;
-    cout << num << "/" << total << endl;
 }
 
 
