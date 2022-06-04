@@ -16,10 +16,42 @@ using namespace std;
 #define ansno cout << "NO\n" 
 #define pii pair <int,int>
 
+int lookup_table[256];
+void init()
+{
+    lookup_table[0] = 0;
+    for(int i = 1 ; i < 256 ; i++)
+        lookup_table[i] = lookup_table[i >> 1] + (i & 1);
+}
 
 void solve()
 {
-    
+    init();
+    ll n;
+    cin >> n;
+    vector<string> s(n);
+    vll v(n);
+    for(int i = 0 ; i < n ; i++)
+        cin >> s[i];
+    for(int i = 0 ; i < n ; i++)
+    {
+        for(auto it : s[i])
+        {
+            v[i] = v[i] << 1;
+            if(it == '1')
+                v[i] = v[i] | 1;
+        }
+    }
+    ll ans = 0;
+    for(auto it : v)
+        ans ^= it;
+    ll cnt = 0;
+    for(int i = 0 ; i < 8 ; i++)
+    {
+        cnt += lookup_table[ans & 255];
+        ans = ans >> 8;
+    }
+    answer(cnt);
 }
 
 
