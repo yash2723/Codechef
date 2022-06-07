@@ -32,11 +32,16 @@ void solve()
 {
     ll n;
     cin >> n;
-    ll ans1 = lcm(n-1 , 1) - gcd(n-1 , 1);
-    ll ans2 = lcm(n-2 , 2) - gcd(n-2 , 2);
-    ll ans3 = lcm(n-3 , 3) - gcd(n-3 , 3);
-    ll ans = max3(ans1 , ans2 , ans3);
-    answer(ans);
+    ll a = n / 2;
+    ll b = n - a;
+    ll m = INT_MIN;
+    while((lcm(a , b) - gcd(a , b)) > m)
+    {
+        m = lcm(a , b) - gcd(a , b);
+        a++;
+        b--;
+    }
+    answer(m);
 }
 
 
