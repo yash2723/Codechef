@@ -19,28 +19,7 @@ using namespace std;
 
 void solve()
 {
-    ll n;
-    cin >> n;
-    ll t , i = n/2 , j = (n/2)+1;
-    if(n & 1)
-        t = 0;
-    else
-        t = 1;
-    for(int k = 0 ; k < n ; k++)
-    {
-        if(t & 1)
-        {
-            cout << i << " ";
-            i--;
-        }
-        else
-        {
-            cout << j << " ";
-            j++;
-        }
-        t++;
-    }
-    cout << endl;
+    
 }
 
 
