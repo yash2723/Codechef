@@ -19,24 +19,9 @@ using namespace std;
 
 void solve()
 {
-    vll v(3);
-    cin >> v[0] >> v[1] >> v[2];
-    sort(v.begin() , v.end());
-    ll maxi = v[2] , a = v[0] , b = v[1];
-    while(maxi)
-    {
-        if(((a & 1) && (b & 1)) || ((a & 1) && (maxi & 1)) || ((maxi & 1) && (b & 1)));
-        
-        else
-        {
-            ansno;
-            return;
-        }
-        a = a >> 1;
-        b = b >> 1;
-        maxi = maxi >> 1;
-    }
-    ansyes;
+    ll n;
+    cin >> n;
+    answer((ll)log2(n));
 }
 
 
