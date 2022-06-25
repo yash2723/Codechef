@@ -19,39 +19,25 @@ using namespace std;
 
 void solve()
 {
-    ll n;
-    cin >> n;
-    vll a(n);
+    ll n , x;
+    cin >> n >> x;
+    vll v(n);
     for(int i = 0 ; i < n ; i++)
-        cin >> a[i];
-    vll suff(n) , pre(n);
-    pre[0] = a[0];
-    for(int i = 1 ; i < n ; i++)
-        pre[i] = __gcd(pre[i-1],a[i]);
-    suff[n-1] = a[n-1];
-    for(int i = n-2 ; i >= 0 ; i--)
-        suff[i] = __gcd(suff[i+1],a[i]);
-    ll ans = pre[n-1];
-    if(ans == 1)
+        cin >> v[i];
+    for(int i = 0 ; i < n-1 ; i++)
     {
-        ll cnt = 0;
-        for(int j = 0 ; j < n ; j++)
+        if(v[i] > v[i+1])
         {
-            ll temp;
-            if(j == 0)
-                temp = suff[1];
-            else if(j == n-1)
-                temp = pre[n-2];
+            if(v[i]+v[i+1] <= x)
+                swap(v[i],v[i+1]);
             else
-                temp = __gcd(pre[j-1],suff[j+1]);
-            
-            if(temp > 1)
-                cnt++;
+            {
+                ansno;
+                return;
+            }
         }
-        answer(cnt);
     }
-    else
-        answer(n);
+    ansyes;
 }
 
 
