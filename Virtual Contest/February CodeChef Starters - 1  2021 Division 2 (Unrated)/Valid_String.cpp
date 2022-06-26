@@ -22,41 +22,31 @@ void solve()
     cin >> n >> c;
     string s;
     cin >> s;
-    vll pos;
+    vll v;
+    ll t = 0;
     for(int i = 0 ; i < n ; i++)
+    {
         if(s[i] == '1')
-            pos.pb(i);
-    bool f = true;
-    ll index;
-    for(int i = 0 ; i < pos.size()-1 ; i++)
-        if((pos[i+1]-pos[i]-1) > c)
         {
-            f = false;
-            index = i+1;
-            break;
+            v.pb(t);
+            t = 0;
         }
-    if(f)
+        else
+            t++;
+    }
+    if(t > 0)
+    {
+        if(v.empty())
+            v.pb(t);
+        else
+            v[0] += t;
+    }
+    sort(v.begin() , v.end());
+    v.pop_back();
+    if(v.empty() || v.back() <= c)
         ansyes;
     else
-    {
-        vll newPos;
-        for(int i = index ; i < pos.size() ; i++)
-            newPos.pb(pos[i]-pos[index]);
-        ll size = newPos.size();
-        for(int i = 0 ; i < index ; i++)
-            newPos.pb(pos[i]+size);
-        f = true;
-        for(int i = 0 ; i < newPos.size()-1 ; i++)
-            if((newPos[i+1]-newPos[i]-1) > c)
-            {
-                f = false;
-                break;
-            }
-        if(f)
-            ansyes;
-        else
-            ansno;
-    }
+        ansno;
 }
 
 
