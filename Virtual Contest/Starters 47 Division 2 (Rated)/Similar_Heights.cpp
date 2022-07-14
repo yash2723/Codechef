@@ -28,6 +28,7 @@ void solve()
         cin >> h[i];
         s.insert(h[i]);
     }
+    sort(h.begin(),h.end());
     ll cnt = 0;
     for(auto it : h)
         if(s.count(it) == 1)
