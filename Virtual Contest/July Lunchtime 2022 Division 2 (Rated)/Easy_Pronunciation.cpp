@@ -21,32 +21,27 @@ void solve()
 {
     ll n;
     cin >> n;
-    vll h(n);
-    multiset<int> s;
+    string s;
+    cin >> s;
+    ll cnt = 0;
     for(int i = 0 ; i < n ; i++)
     {
-        cin >> h[i];
-        s.insert(h[i]);
-    }
-    sort(h.begin(),h.end());
-    ll cnt = 0;
-    for(auto it : h)
-        if(s.count(it) == 1)
+        if(s[i] != 'a' && s[i] != 'e' && s[i] != 'i' && s[i] != 'o' && s[i] != 'u')
             cnt++;
-    if(cnt == 1 && s.count(h[n-1]) == 1)
-    {
-        for(auto it : h)
-            if(s.count(it) > 2)
+        else
+        {
+            if(cnt >= 4)
             {
-                answer(1);
+                ansno;
                 return;
             }
-        answer(2);
+            cnt = 0;
+        }
     }
-    else if(cnt % 2 == 0)
-        answer(cnt/2);
+    if(cnt >= 4)
+        ansno;
     else
-        answer((cnt/2)+1);
+        ansyes;
 }
 
 

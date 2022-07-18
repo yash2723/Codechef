@@ -21,32 +21,27 @@ void solve()
 {
     ll n;
     cin >> n;
-    vll h(n);
-    multiset<int> s;
+    string s;
+    cin >> s;
+    map<char,ll> odd , even;
+    set<char> str;
     for(int i = 0 ; i < n ; i++)
     {
-        cin >> h[i];
-        s.insert(h[i]);
+        str.insert(s[i]);
+        if(i % 2)
+            even[s[i]]++;
+        else
+            odd[s[i]]++;
     }
-    sort(h.begin(),h.end());
-    ll cnt = 0;
-    for(auto it : h)
-        if(s.count(it) == 1)
-            cnt++;
-    if(cnt == 1 && s.count(h[n-1]) == 1)
+    for(auto it : str)
     {
-        for(auto it : h)
-            if(s.count(it) > 2)
-            {
-                answer(1);
-                return;
-            }
-        answer(2);
+        if(odd[it] != even[it])
+        {
+            ansno;
+            return;
+        }
     }
-    else if(cnt % 2 == 0)
-        answer(cnt/2);
-    else
-        answer((cnt/2)+1);
+    ansyes;
 }
 
 
