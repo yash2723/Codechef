@@ -16,29 +16,29 @@ using namespace std;
 #define ansno cout << "NO\n" 
 #define pii pair <int,int>
 
+
 void solve()
 {
-    ll n;
-    cin >> n;
-    vll v(n);
-    for(int i = 0 ; i < n ; i++)
-        cin >> v[i];
-    ll cnt = 0 , ans = 0;
-    for(int i = 0 ; i < n ; i++)
+    ll n , m;
+    cin >> n >> m;
+    map<ll,ll> v;
+    ll maxi = 0;
+    pair<ll,ll> ans;
+    for(ll i = n ; i <= m ; i++)
     {
-        if(v[i] == 0)
-            cnt = 0;
-        else
-            cnt++;
-        ans += cnt;
+        v[i] = m - (m % i);
+        maxi = max(maxi , abs(i-(m - (m % i))));
+        if(maxi == abs(i-(m - (m % i))))
+            ans = {i , (m - (m % i))};
     }
-    answer(ans);
+    cout << ans.first << " " << ans.second << endl; 
 }
 
 
 int main()
 {
     FAST;
+
     ll t = 1;
     cin >> t;
     while(t--)
