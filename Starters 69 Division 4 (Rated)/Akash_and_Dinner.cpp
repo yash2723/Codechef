@@ -1,0 +1,79 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define PI  3.141592653589793
+
+#define FAST ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+#define ll long long int
+#define vi vector <int>
+#define vll vector < ll >
+#define pb push_back
+#define endl '\n'
+#define max3(a,b,c) max(max(a,b),c)
+#define min3(a,b,c) min(min(a,b),c)
+#define answer(ans) cout << ans << '\n' 
+#define ansyes cout << "YES\n" 
+#define ansno cout << "NO\n" 
+#define pii pair <int,int>
+
+
+void solve()
+{
+    ll n , k;
+    cin >> n >> k;
+
+    vll a(n) , b(n);
+    for(int i = 0 ; i < n ; i++)
+        cin >> a[i];
+    for(int i = 0 ; i < n ; i++)
+        cin >> b[i];
+
+    map<ll , vll> mp;
+    for(int i = 0 ; i < n ; i++)
+        mp[a[i]].pb(b[i]);
+    
+    if(mp.size() < k) {
+        answer(-1);
+        return ;
+    }
+
+    for(auto it : mp) {
+        vll v = it.second;
+        sort(v.begin() , v.end());
+        mp[it.first] = v;
+    }
+
+    map<ll , bool> visit;
+    ll sum = 0;
+    
+    vector<pair<ll,ll>> v;
+    for(auto it : mp) {
+        if(!visit[it.first]) {
+            v.pb(make_pair(it.second[0] , it.first));
+        }
+    }
+
+    sort(v.begin() , v.end());
+    for(int i = 0 ; i < k ; i++) {
+        sum += v[i].first;
+        // visit[v[0].second] = true;
+    }
+
+    answer(sum);
+}
+
+
+int main()
+{
+    FAST;
+
+    ll t = 1;
+    cin >> t;
+    while(t--)
+    {
+        solve();
+    }
+    cerr << "time taken : " << (float)clock()/CLOCKS_PER_SEC << " secs" << endl;
+
+    return 0;
+}
